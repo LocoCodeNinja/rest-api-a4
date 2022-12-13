@@ -1,7 +1,7 @@
 package com.chillsoba.restapi.service;
 
-import com.chillsoba.restapi.object.Chair;
-import com.chillsoba.restapi.object.ChairRepo;
+import com.chillsoba.restapi.persistence.Chair;
+import com.chillsoba.restapi.persistence.ChairRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,11 +16,11 @@ public class ChairService {
 
     public List<Chair> getChairs(){return this.repo.findAll();}
 
-    public Chair getChair(Integer id) {return this.repo.findById(id).get();}
+    public Chair getChair(Long id) {return this.repo.findById(id).get();}
 
     public Chair postChair(Chair chair) {return this.repo.save(chair);}
 
-    public Chair putChair(Integer id, Chair chair){
+    public Chair putChair(Long id, Chair chair){
         Optional<Chair> object = this.repo.findById(id);
 
         if(object.isPresent()){
@@ -32,7 +32,7 @@ public class ChairService {
         throw new RuntimeException();
     }
 
-    public void deleteChair(Integer id) {this.repo.deleteById(id);}
+    public void deleteChair(Long id) {this.repo.deleteById(id);}
 
 
 

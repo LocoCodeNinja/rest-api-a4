@@ -1,4 +1,4 @@
-package com.chillsoba.restapi.object;
+package com.chillsoba.restapi.persistence;
 
 import lombok.Data;
 
@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class Chair {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(name = "material", length = 50, nullable = false, unique = false)
     private String material;
