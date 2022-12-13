@@ -1,5 +1,6 @@
 package com.chillsoba.restapi.service;
 
+import com.chillsoba.restapi.object.Chair;
 import com.chillsoba.restapi.object.ChairRepo;
 import org.springframework.stereotype.Service;
 
@@ -11,8 +12,28 @@ public class ChairService {
 
     ChairRepo repo;
 
-    public ChairService(ChairRepo repo) {
-        this.repo = repo;
+    public ChairService(ChairRepo repo) {this.repo = repo;}
+
+    public List<Chair> getChairs(){return this.repo.findAll();}
+
+    public Chair getChair(Integer id) {return this.repo.findById(id).get();}
+
+    public Chair postChair(Chair chair) {return this.repo.save(chair);}
+
+    public Chair putChair(Integer id, Chair chair){
+        Optional<Chair> object = this.repo.findById(id);
+
+        if(object.isPresent()){
+            object.get().setColour(chair.getColour());
+            object.get().setMaterial(chair.getMaterial());
+            object.get().setSize(chair.getSize());
+            return this.repo.save(object.get());
+        }
+        throw new RuntimeException();
     }
+
+    public void deleteChair(Integer id) {this.repo.deleteById(id);}
+
+
 
 }
