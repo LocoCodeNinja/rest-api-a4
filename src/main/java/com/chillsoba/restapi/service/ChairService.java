@@ -34,6 +34,4 @@ public class ChairService {
 
     public void deleteChair(Long id) {this.repo.deleteById(id);}
 
-
-
 }
